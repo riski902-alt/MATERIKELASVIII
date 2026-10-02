@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFORMATIKA FUN - Kelas VIII</title>
+    <!-- Font Poppins untuk kesan modern, bersih, dan lembut -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome untuk ikon-ikon Informatika -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ================= VARIABEL WARNA ================= */
+        :root {
+            /* Latar belakang: Very light blue & Pale mint gradient */
+            --bg-grad-1: #eef7f9;
+            --bg-grad-2: #fdfdfd;
+            --bg-grad-3: #eaf5f0;
+            
+            /* Warna Teks */
+            --text-title: #1e3a5f; /* Navy elegan untuk judul utama */
+            --text-btn: #ffffff;   /* Putih agar kontras di atas tombol berwarna */
+
+            /* Warna Tombol (Soft & Muted Palette) */
+            --btn-1: rgba(107, 142, 170, 0.85); /* Soft Denim Blue */
+            --btn-2: rgba(130, 156, 184, 0.85); /* Dusty Blue */
+            --btn-3: rgba(92, 124, 153, 0.85);  /* Soft Navy */
+            --btn-4: rgba(120, 149, 178, 0.85); /* Muted Blue */
+            --btn-5: rgba(142, 182, 155, 0.85); /* Sage Green */
+            --btn-6: rgba(104, 166, 166, 0.85); /* Soft Cyan */
+        }
+
+        /* ================= RESET & BASE ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2), var(--bg-grad-3));
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+            color: var(--text-title);
+        }
+
+        /* ================= ELEMEN BACKGROUND FLOATING ================= */
+        .bg-elements {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none; /* Agar tidak bisa diklik */
+        }
+        .bg-icon {
+            position: absolute;
+            color: #1e3a5f;
+            opacity: 0.07; /* 7% opacity sesuai permintaan (5-12%) */
+            font-size: 2.5rem;
+            animation: float-anim 10s infinite ease-in-out;
+        }
+        @keyframes float-anim {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        /* Penempatan acak elemen background */
+        .bg-1 { top: 15%; left: 10%; font-weight: bold; } /* </> */
+        .bg-2 { top: 30%; right: 12%; animation-delay: 1.5s; } /* node */
+        .bg-3 { top: 60%; left: 8%; font-weight: bold; animation-delay: 3s; } /* 0 1 */
+        .bg-4 { top: 75%; right: 15%; animation-delay: 2s; } /* wifi */
+        .bg-5 { top: 85%; left: 20%; animation-delay: 4s; } /* cloud */
+        .bg-6 { top: 10%; right: 25%; animation-delay: 1s; } /* cursor */
+
+        /* ================= HEADER (JUDUL) ================= */
+        header {
+            text-align: center;
+            padding: 50px 20px 30px;
+            z-index: 1;
+        }
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        header p {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #5a6e85;
+        }
+
+        /* ================= SUSUNAN TOMBOL ================= */
+        main {
+            width: 100%;
+            max-width: 750px; /* Lebar optimal di desktop (70-80%) */
+            padding: 0 20px 40px;
+            z-index: 1;
+            flex: 1; /* Mendorong footer ke bawah */
+        }
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px; /* Jarak lega antar tombol */
+        }
+
+        /* ================= BENTO GRID & GLASSMORPHISM TOMBOL ================= */
+        .bento-btn {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            padding: 24px 30px;
+            border-radius: 20px;
+            color: var(--text-btn);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Pewarnaan Masing-masing Tombol */
+        .btn-bab1 { background: var(--btn-1); }
+        .btn-bab2 { background: var(--btn-2); }
+        .btn-bab3 { background: var(--btn-3); }
+        .btn-bab4 { background: var(--btn-4); }
+        .btn-sum1 { background: var(--btn-5); }
+        .btn-sum2 { background: var(--btn-6); }
+
+        .bento-btn i {
+            font-size: 1.6rem;
+            width: 40px; /* Lebar tetap agar teks sejajar rapi */
+            margin-right: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .bento-btn span {
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* ================= ANIMASI HOVER ================= */
+        .bento-btn:hover {
+            transform: translateY(-6px) scale(1.015);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1), 0 0 15px rgba(255,255,255,0.4); /* Soft shadow & glow */
+            filter: brightness(1.08); /* Sedikit lebih terang */
+        }
+        .bento-btn:hover i {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        /* ================= ANIMASI CLICK (ACTIVE) ================= */
+        .bento-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Efek Ripple */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple-anim 0.6s linear;
+            pointer-events: none; /* Tidak mengganggu klik lanjutan */
+        }
+        @keyframes ripple-anim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            text-align: center;
+            padding: 20px;
+            z-index: 1;
+            font-size: 0.9rem;
+            color: #5a6e85;
+            margin-top: 20px;
+        }
+        footer strong {
+            display: block;
+            color: var(--text-title);
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        /* ================= RESPONSIVE DESIGN ================= */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            .bento-btn { padding: 20px; }
+            .bento-btn span { font-size: 1.05rem; }
+            .bento-btn i { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Elemen Dekoratif Latar Belakang -->
+    <div class="bg-elements">
+        <div class="bg-icon bg-1">&lt;/&gt;</div>
+        <div class="bg-icon bg-2"><i class="fas fa-network-wired"></i></div>
+        <div class="bg-icon bg-3">0 1</div>
+        <div class="bg-icon bg-4"><i class="fas fa-wifi"></i></div>
+        <div class="bg-icon bg-5"><i class="fas fa-cloud"></i></div>
+        <div class="bg-icon bg-6"><i class="fas fa-mouse-pointer"></i></div>
+    </div>
+
+    <!-- Judul Halaman -->
+    <header>
+        <h1>KELAS VIII</h1>
+        <p>Pembelajaran Informatika – Kelas VIII</p>
+    </header>
+
+    <!-- Kumpulan Tombol Navigasi -->
+    <main>
+        <div class="btn-container">
+            
+            <a href="LINK_BAB_1" class="bento-btn btn-bab1">
+                <i class="fas fa-project-diagram"></i>
+                <span>Bab 1: Berpikir Komputasional</span>
+            </a>
+
+            <a href="LINK_BAB_2" class="bento-btn btn-bab2">
+                <i class="fas fa-microchip"></i>
+                <span>Bab 2: Sistem Komputer</span>
+            </a>
+
+            <a href="LINK_BAB_3" class="bento-btn btn-bab3">
+                <i class="fas fa-globe"></i>
+                <span>Bab 3: Jaringan Komputer dan Internet</span>
+            </a>
+
+            <a href="LINK_BAB_4" class="bento-btn btn-bab4">
+                <i class="fas fa-users"></i>
+                <span>Bab 4: Dampak Sosial Informatika</span>
+            </a>
+
+            <a href="LINK_SUMATIF_1" class="bento-btn btn-sum1">
+                <i class="fas fa-clipboard-check"></i>
+                <span>Sumatif Akhir Semester 1</span>
+            </a>
+
+            <!-- Sesuai instruksi, teks "Sematif Akhir Semester 2" dipertahankan persis -->
+            <a href="LINK_SUMATIF_2" class="bento-btn btn-sum2">
+                <i class="fas fa-bullseye"></i>
+                <span>Sematif Akhir Semester 2</span>
+            </a>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <strong>INFORMATIKA FUN</strong>
+        By: Riski Amalia, S.Pd.
+    </footer>
+
+    <!-- Script JavaScript untuk Interaksi Klik / Ripple -->
+    <script>
+        document.querySelectorAll('.bento-btn').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                // Cegah link terbuka seketika untuk memberikan waktu animasi berjalan
+                e.preventDefault(); 
+                let href = this.getAttribute('href');
+
+                // Kalkulasi koordinat klik pengguna
+                let rect = this.getBoundingClientRect();
+                let x = e.clientX - rect.left;
+                let y = e.clientY - rect.top;
+
+                // Buat elemen gelombang (ripple)
+                let ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+
+                // Hitung ukuran ripple agar menutupi seluruh tombol
+                let size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.marginTop = ripple.style.marginLeft = -(size / 2) + 'px';
+
+                this.appendChild(ripple);
+
+                // Hapus efek ripple setelah animasi selesai dan eksekusi link
+                setTimeout(() => {
+                    ripple.remove();
+                    // Lakukan perpindahan link jika bukan URL kosong/hashtag
+                    if (href && href !== '#') {
+                        window.location.href = href;
+                    }
+                }, 350); // Waktu tunda 0.35 detik sebelum pindah halaman
+            });
+        });
+    </script>
+</body>
+</html>
